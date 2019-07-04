@@ -1,2 +1,1 @@
-# TZP3-1
-Hybrid Movie Recommender system 
+# TZP3-1 | # Hybrid Movie Recommender System 
