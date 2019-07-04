@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Movie Recommendations</title>
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <style>
+            a.link:hover {
+              background-color: #BC1818;
+            }
+        
+            .search-box-wrapper{
+                display: inline-flex;
+                font-size: 1em;
+                position: absolute;
+                left: 35%;
+                right: 35%;
+                
+            }
+
+            .search-box-input {
+                border: 0.1em solid #737373;
+                border-radius: 0.3em 0 0 0.3em;
+                padding: 0.2em 0.5em;
+                outline: 0;
+                width:700px;
+                height:35px;
+                text-align:center;
+            }
+
+            .search-box-input:hover,
+            .search-box-input:focus {
+                border: 0.2em solid #042345;
+                
+            }
+
+            .search-box-button {
+                font-size: inherit;
+                font-weight:400;
+                border: 0.1em solid #737373; 
+                border-radius: 0 0.3em 0.3em 0;
+                background-color: #737373;
+                border-left: 0;
+                color: white;
+                padding: 0 0.75em;
+                outline: 0;
+                cursor: pointer;
+
+            }
+            .search-box-button:hover,
+            .search-box-button:focus {
+                border-color: #042345;
+                background-color: #042345;
+            }
+            .data{
+                font-size: 12px;
+                color: aliceblue;
+            }
+
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body style="background-color:#FF0000;background-image:linear-gradient(-90deg,#BC1818,#FF0000)" class = "body_all">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #042345;">
+            <a class="navbar-brand" href="index.html" style="font-weight: 400"><img class="img-fluid" style="width:80px;height:auto;" src="https://i.ibb.co/FzKq07Z/logo1.jpg">Movie Recommendations</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class = "navbar-nav ml-auto">
+                        <li class="nav-item"><a  class="nav-link active link" href="{{ url_for('analysis') }}" >Analysis</a></li>
+                        <li class="nav-item"><a  class="nav-link active link" href="{{ url_for('recommendation') }}" >Recommendation</a></li>                 
+                </ul>                
+            </div>
+        </nav>
+
+    </div>
+    <div class = "container">
+    <h4 style="text-align: center;margin:30px">
+            Enter a movie in the search and let us give you our recommendations &#128515
+    </h4>
+   <!-- <div class="search-box-wrapper">-->
+       <!-- <input type="text" placeholder="Enter Movie Name.... " class="search-box-input">
+         <button class="search-box-button">Recommend</button>  -->
+        <div class = "row">
+         <form action="{{ url_for('send') }}" method="POST">
+
+            <label> Movie Title </label>
+            <input type = 'text' name = 'title' value={{request.form.title}}>
+            <input type = 'text' name = 'userId' value={{request.form.userId}}>
+    
+            
+            <button> Submit </button>
+        </form>
+        
+        </div> 
+
+        <div class = "row">
+            <div class = "card col-md-6">
+        <div class=page>
+
+          <h1>You also might like</h1>
+          <table class = "table table-striped">
+                <thead>
+                    <tr>
+                        {% for col in colnames %}
+                        <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                    <tr>
+                        {% for col in colnames %}
+                        <td>{{ record[col] }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          
+         </div>
+
+    </div>
+</div>
+
+</div>  
+
+
+    </body>
+</html>
