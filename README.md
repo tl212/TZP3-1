@@ -11,4 +11,6 @@ In a content-based filtering, the similarity between different products is calcu
 
 Collaborative filtering leverages the power of the crowd. The intuition behind collaborative filtering is that if a user A likes products X and Y, and if another user B likes product X, there is a fair bit of chance that he will like the product Y as well.
 
+#### Hybrid 
+
 Hybrid recommenders use both user-item interaction data and their contextual information. In this work, we propose hybrid recommender algorithms by considering the relationship between content features. This relationship is embedded into the hybrid recommenders to improve their accuracy.
